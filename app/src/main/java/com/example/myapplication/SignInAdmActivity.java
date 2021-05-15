@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignInAdmActivity extends AppCompatActivity {
     private EditText emailAdm, passwordAdm;
     private Button SignInButton;
+    TextView notHaveAccntAdm;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
 
@@ -35,6 +36,7 @@ public class SignInAdmActivity extends AppCompatActivity {
         emailAdm = findViewById(R.id.emailadm);
         passwordAdm = findViewById(R.id.passwordadm);
         SignInButton = findViewById(R.id.loginadm);
+        notHaveAccntAdm= findViewById(R.id.nothave_accountAdm);
 
         progressDialog = new ProgressDialog(this);
         SignInButton.setOnClickListener(new View.OnClickListener() {
@@ -43,11 +45,19 @@ public class SignInAdmActivity extends AppCompatActivity {
                 login();
             }
         });
+        //not have an account textview click
+        notHaveAccntAdm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignInAdmActivity.this,SignUpAdmActivity.class));
+                finish();
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(SignInAdmActivity.this, AdminActivity.class);
+        Intent intent = new Intent(SignInAdmActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }

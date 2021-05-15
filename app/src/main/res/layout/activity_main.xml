@@ -1,64 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/wallpaper"
     tools:context=".MainActivity">
 
-    <LinearLayout
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/bg"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center"
+        android:text="Welcome"
+        android:textColor="@color/design_default_color_surface"
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@drawable/bgtwo"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
-            android:text="App Name"
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/homestudent"
-            android:layout_width="197dp"
-            android:layout_height="145dp"
-            android:background="@drawable/radius"
-            android:ems="10"
-            android:gravity="center"
-            android:layout_marginTop="100dp"
-            android:text="Student Login"
-            android:fontFamily="casual"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="153dp" />
+    <!--Button: Student-->
+    <Button
+        android:id="@+id/homestudent"
+        style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:layout_above="@+id/homeadmin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:text="Student Login"
+        app:backgroundTint="@android:color/holo_green_dark" />
 
-        <TextView
-            android:id="@+id/homeadmin"
-            android:layout_width="207dp"
-            android:layout_height="160dp"
-            android:background="@drawable/radius"
-            android:ems="10"
-            android:fontFamily="casual"
-            android:layout_marginTop="100dp"
-            android:gravity="center"
-            android:text="Administrator Login"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="102dp"
-            tools:layout_editor_absoluteY="432dp" />
 
-    </LinearLayout>
+    <!--Button: Administration-->
+    <Button
+        android:id="@+id/homeadmin"
+        style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:text="Administration Login"
+        app:backgroundTint="@color/teal_700" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

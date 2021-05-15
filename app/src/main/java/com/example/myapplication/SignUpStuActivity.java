@@ -8,6 +8,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,8 +20,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpStuActivity extends AppCompatActivity {
-    private EditText emailStu, password1Stu, password2Stu;
+    private EditText nameStu, admnumStu, emailStu, password1Stu, password2Stu;
     private Button SignUpButton;
+    TextView mHaveAccountTv;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
 
@@ -29,10 +31,13 @@ public class SignUpStuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.studentsignup);
         firebaseAuth = FirebaseAuth.getInstance();
+        nameStu= findViewById(R.id.namestu);
+        admnumStu= findViewById(R.id.admnumstu);
         emailStu = findViewById(R.id.emailstu);
         password1Stu = findViewById(R.id.password1stu);
         password2Stu = findViewById(R.id.password2stu);
         SignUpButton = findViewById(R.id.registerstu);
+        mHaveAccountTv= findViewById(R.id.have_accountTv);
         progressDialog = new ProgressDialog(this);
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,30 +46,48 @@ public class SignUpStuActivity extends AppCompatActivity {
                 register();
             }
         });
+        //handle login textview click listener
+        mHaveAccountTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignUpStuActivity.this,SignInStuActivity.class));
+                finish();
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(SignUpStuActivity.this, StudentActivity.class);
+        Intent intent = new Intent(SignUpStuActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
     private void register() {
+        String name= nameStu.getText().toString();
+        String admno= admnumStu.getText().toString();
         String email = emailStu.getText().toString();
         String password1 = password1Stu.getText().toString();
         String password2 = password2Stu.getText().toString();
 
         String[] separated = email.split("@");
-
-        if (TextUtils.isEmpty(email)) {
+        if(TextUtils.isEmpty(name)){
+            nameStu.setError("Enter name");
+            return;
+        }else if(TextUtils.isEmpty(admno)){
+            admnumStu.setError("Enter Admission Number");
+            return;
+        } else if (TextUtils.isEmpty(email)) {
             emailStu.setError("Enter your Mail");
             return;
         } else if (!((separated[1].equals("am.iitism.ac.in")) || (separated[1].equals("cse.iitism.ac.in")) ||
                 (separated[1].equals("ece.iitism.ac.in")) || (separated[1].equals("ee.iitism.ac.in")) ||
                 (separated[1].equals("pe.iitism.ac.in")) || (separated[1].equals("ce.iitism.ac.in")) ||
                 (separated[1].equals("cve.iitism.ac.in")) || (separated[1].equals("mme.iitism.ac.in")) ||
-                (separated[1].equals("mech.iitism.ac.in")))) {
+                (separated[1].equals("mech.iitism.ac.in"))||(separated[1].equals("agl.iitism.ac.in"))||
+                (separated[1].equals("agp.iitism.ac.in"))||(separated[1].equals("ap.iitism.ac.in"))||
+                (separated[1].equals("me.iitism.ac.in"))||(separated[1].equals("ese.iitism.ac.in"))||
+                (separated[1].equals("fme.iitism.ac.in")))) {
             emailStu.setError("Enter Your College Email");
             return;
         } else if (TextUtils.isEmpty(password1)) {

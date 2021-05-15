@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         Homestudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, StudentActivity.class);
+                Intent intent = new Intent(MainActivity.this, SignInStuActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         Homeadmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+                Intent intent = new Intent(MainActivity.this, SignInAdmActivity.class);
                 startActivity(intent);
                 finish();
             }
