@@ -64,13 +64,20 @@ public class SignUpAdmActivity extends AppCompatActivity {
     }
 
     private void register() {
+        String name= nameAdm.getText().toString();
+        String desg=desgAdm.getText().toString();
         String email = emailAdm.getText().toString();
         String password1 = password1Adm.getText().toString();
         String password2 = password2Adm.getText().toString();
 
         String[] separated = email.split("@");
-
-        if (TextUtils.isEmpty(email)) {
+        if(TextUtils.isEmpty(name)){
+            nameAdm.setError("Enter name");
+            return;
+        }else if(TextUtils.isEmpty(desg)){
+            desgAdm.setError("Enter Designation");
+            return;
+        }else if (TextUtils.isEmpty(email)) {
             emailAdm.setError("Enter your Mail");
             return;
         } else if ((!separated[1].equals("iitism.ac.in"))) {

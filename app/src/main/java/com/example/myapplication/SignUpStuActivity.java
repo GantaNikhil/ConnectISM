@@ -64,13 +64,20 @@ public class SignUpStuActivity extends AppCompatActivity {
     }
 
     private void register() {
+        String name= nameStu.getText().toString();
+        String admno= admnumStu.getText().toString();
         String email = emailStu.getText().toString();
         String password1 = password1Stu.getText().toString();
         String password2 = password2Stu.getText().toString();
 
         String[] separated = email.split("@");
-
-        if (TextUtils.isEmpty(email)) {
+        if(TextUtils.isEmpty(name)){
+            nameStu.setError("Enter name");
+            return;
+        }else if(TextUtils.isEmpty(admno)){
+            admnumStu.setError("Enter Admission Number");
+            return;
+        } else if (TextUtils.isEmpty(email)) {
             emailStu.setError("Enter your Mail");
             return;
         } else if (!((separated[1].equals("am.iitism.ac.in")) || (separated[1].equals("cse.iitism.ac.in")) ||
