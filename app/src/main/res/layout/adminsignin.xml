@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/aclonica"
-        android:text="Administrator Login"
+        android:text="Administration Login"
         android:textAlignment="center"
         android:textColor="@color/teal_700"
         android:textSize="30sp" />

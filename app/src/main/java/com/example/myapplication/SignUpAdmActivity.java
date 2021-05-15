@@ -8,6 +8,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,8 +20,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpAdmActivity extends AppCompatActivity {
-    private EditText emailAdm, password1Adm, password2Adm;
+    private EditText  nameAdm, desgAdm, emailAdm, password1Adm, password2Adm;
     private Button SignUpButton;
+    TextView mHaveAccountAdm;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
 
@@ -29,10 +31,13 @@ public class SignUpAdmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adminsignup);
         firebaseAuth = FirebaseAuth.getInstance();
+        nameAdm= findViewById(R.id.nameadm);
+        desgAdm= findViewById(R.id.desgadm);
         emailAdm = findViewById(R.id.emailadm);
         password1Adm = findViewById(R.id.password1adm);
         password2Adm = findViewById(R.id.password2adm);
         SignUpButton = findViewById(R.id.registeradm);
+        mHaveAccountAdm= findViewById(R.id.have_accountadm);
         progressDialog = new ProgressDialog(this);
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,11 +46,19 @@ public class SignUpAdmActivity extends AppCompatActivity {
                 register();
             }
         });
+        //handle login textview click listener
+        mHaveAccountAdm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignUpAdmActivity.this,SignInAdmActivity.class));
+                finish();
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(SignUpAdmActivity.this, AdminActivity.class);
+        Intent intent = new Intent(SignUpAdmActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
