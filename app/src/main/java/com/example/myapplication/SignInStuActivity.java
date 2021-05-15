@@ -20,8 +20,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignInStuActivity extends AppCompatActivity {
-    private EditText emailStu, passwordStu;
-    private Button SignInButton;
+    private EditText mEmailEt, mPasswordEt;
+    private Button mLoginBtn;
+    TextView notHaveAccntTv;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
 
@@ -32,35 +33,44 @@ public class SignInStuActivity extends AppCompatActivity {
         setContentView(R.layout.studentsignin);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        emailStu = findViewById(R.id.emailstu);
-        passwordStu = findViewById(R.id.passwordstu);
-        SignInButton = findViewById(R.id.loginstu);
+        mEmailEt= findViewById(R.id.emailEt);
+        mPasswordEt= findViewById(R.id.passwordEt);
+        mLoginBtn= findViewById(R.id.loginBtn);
+        notHaveAccntTv= findViewById(R.id.nothave_accountTv);
 
         progressDialog = new ProgressDialog(this);
-        SignInButton.setOnClickListener(new View.OnClickListener() {
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
+            }
+        });
+        //not have an account textview click
+        notHaveAccntTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignInStuActivity.this,SignUpStuActivity.class));
+                finish();
             }
         });
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(SignInStuActivity.this, StudentActivity.class);
+        Intent intent = new Intent(SignInStuActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
     private void login() {
-        String email = emailStu.getText().toString();
-        String password = passwordStu.getText().toString();
+        String email = mEmailEt.getText().toString();
+        String password = mPasswordEt.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            emailStu.setError("Enter your Mail");
+            mEmailEt.setError("Enter your Mail");
             return;
 
         } else if (TextUtils.isEmpty(password)) {
-            passwordStu.setError("Enter your Password");
+            mPasswordEt.setError("Enter your Password");
             return;
         }
 

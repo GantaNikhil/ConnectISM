@@ -23,6 +23,10 @@
         <activity android:name=".SignInStuActivity" />
         <activity android:name=".SignUpStuActivity" />
         <activity android:name=".SignUpAdmActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
