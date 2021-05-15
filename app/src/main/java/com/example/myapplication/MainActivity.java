@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private TextView Homestudent, Homeadmin;
-    Button vutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +32,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AdminActivity.class);
                 startActivity(intent);
                 finish();
-            }
-        });
-
-        vutton = findViewById(R.id.button);
-        vutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),BackgroundActivity.class));
             }
         });
     }
