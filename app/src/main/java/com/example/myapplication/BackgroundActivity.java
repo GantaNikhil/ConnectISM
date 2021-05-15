@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+//import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -39,9 +39,9 @@ public class BackgroundActivity extends AppCompatActivity implements NavigationV
     NavigationView nav;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToogle;
-    Toolbar toolbar;
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
+   // Toolbar toolbar;
+   // FragmentManager fragmentManager;
+   // FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,12 +53,13 @@ public class BackgroundActivity extends AppCompatActivity implements NavigationV
         fragmentTransaction.commit();*/
 
         nav=findViewById(R.id.navigation);
-        nav.setNavigationItemSelectedListener(this);
-        toolbar = findViewById(R.id.drawertoolbar);
-       // setSupportActionBar(toolbar);
+      //  nav.setNavigationItemSelectedListener(this);
+       Toolbar toolbar = findViewById(R.id.drawertoolbar);
+        setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer);
         actionBarDrawerToogle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToogle);
+        actionBarDrawerToogle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToogle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToogle.syncState();
     }

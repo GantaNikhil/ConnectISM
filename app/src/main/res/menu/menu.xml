@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Requests" />
-    <item android:title="Administration" />
-    <item android:title="Profile" />
-    <group />
-    <item android:title="Logout" />
+    <item
+        android:icon="@drawable/ic_baseline_preview_24"
+        android:title="Requests" />
+    <item
+        android:icon="@drawable/ic_baseline_people_outline_24"
+        android:title="Administration" />
+    <item
+        android:icon="@drawable/ic_baseline_person_pin_circle_24"
+        android:title="Profile" />
+    <item>
+        <menu>
+            <item
+                android:icon="@drawable/ic_baseline_vpn_key_24"
+                android:title="Logout" />
+        </menu>
+    </item>
 </menu>
