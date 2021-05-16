@@ -28,6 +28,7 @@
         <EditText
             android:id="@+id/emailadm"
             android:inputType="textEmailAddress"
+            android:textColor="@color/black"
             android:hint="Email"
             android:background="@color/white"
             android:layout_width="match_parent"
@@ -45,6 +46,7 @@
         app:passwordToggleEnabled="true">
         <EditText
             android:id="@+id/passwordadm"
+            android:textColor="@color/black"
             android:inputType="textPassword"
             android:hint="Password"
             android:background="@color/white"
@@ -62,6 +64,7 @@
         android:layout_below="@+id/passwordTIL"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:textColor="@color/white"
         android:text="Login"
         app:backgroundTint="@color/teal_700" />
 

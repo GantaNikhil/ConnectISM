@@ -34,6 +34,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
         android:text="Student Login"
+        android:textColor="@color/white"
         app:backgroundTint="@android:color/holo_green_dark" />
 
 
@@ -45,6 +46,7 @@
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
         android:layout_marginBottom="100dp"
         android:text="Administration Login"
         app:backgroundTint="@color/teal_700" />

@@ -29,6 +29,7 @@
         <EditText
             android:id="@+id/nameadm"
             android:layout_width="match_parent"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:hint="Name"
@@ -58,6 +59,7 @@
             android:id="@+id/emailadm"
             android:inputType="textEmailAddress"
             android:hint="Email"
+            android:textColor="@color/black"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -79,6 +81,7 @@
             android:hint="Password"
             android:background="@color/white"
             android:layout_width="match_parent"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,6 +100,7 @@
             android:inputType="textPassword"
             android:hint="Confirm Password"
             android:background="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -110,6 +114,7 @@
         android:layout_below="@+id/passwordTIL1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
+        android:textColor="@color/white"
         android:text="Register"
         app:backgroundTint="@color/teal_700" />
 
