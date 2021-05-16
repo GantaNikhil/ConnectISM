@@ -9,7 +9,6 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-
     <string-array name="admins">
         <item>Director</item>
         <item>Chairman</item>
@@ -17,4 +16,6 @@
         <item>Dean(SW)</item>
         <item>Associate Dean(SW)</item>
     </string-array>
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>
