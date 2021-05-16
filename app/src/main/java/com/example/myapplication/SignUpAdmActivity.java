@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,8 +22,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SignUpAdmActivity extends AppCompatActivity {
-    private EditText  nameAdm, desgAdm, emailAdm, password1Adm, password2Adm;
+public class SignUpAdmActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private EditText  nameAdm, emailAdm, password1Adm, password2Adm;
     private Button SignUpButton;
     TextView mHaveAccountAdm;
     private ProgressDialog progressDialog;
@@ -32,13 +35,18 @@ public class SignUpAdmActivity extends AppCompatActivity {
         setContentView(R.layout.adminsignup);
         firebaseAuth = FirebaseAuth.getInstance();
         nameAdm= findViewById(R.id.nameadm);
-        desgAdm= findViewById(R.id.desgadm);
         emailAdm = findViewById(R.id.emailadm);
         password1Adm = findViewById(R.id.password1adm);
         password2Adm = findViewById(R.id.password2adm);
         SignUpButton = findViewById(R.id.registeradm);
         mHaveAccountAdm= findViewById(R.id.have_accountadm);
         progressDialog = new ProgressDialog(this);
+
+        Spinner spinner= findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence>adapter= ArrayAdapter.createFromResource(this,R.array.admins, android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(this);
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +73,6 @@ public class SignUpAdmActivity extends AppCompatActivity {
 
     private void register() {
         String name= nameAdm.getText().toString();
-        String desg=desgAdm.getText().toString();
         String email = emailAdm.getText().toString();
         String password1 = password1Adm.getText().toString();
         String password2 = password2Adm.getText().toString();
@@ -73,9 +80,6 @@ public class SignUpAdmActivity extends AppCompatActivity {
         String[] separated = email.split("@");
         if(TextUtils.isEmpty(name)){
             nameAdm.setError("Enter name");
-            return;
-        }else if(TextUtils.isEmpty(desg)){
-            desgAdm.setError("Enter Designation");
             return;
         }else if (TextUtils.isEmpty(email)) {
             emailAdm.setError("Enter your Mail");
@@ -120,5 +124,16 @@ public class SignUpAdmActivity extends AppCompatActivity {
 
     private boolean isValidEmail(String email) {
         return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text=parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
