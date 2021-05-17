@@ -18,4 +18,8 @@
     </string-array>
     <string name="open">open</string>
     <string name="close">close</string>
+    <string name="menu_profile">profile</string>
+    <string name="menu_requests">requests</string>
+    <string name="menu_admins">admins</string>
+
 </resources>
