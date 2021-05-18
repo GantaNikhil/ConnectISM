@@ -4,32 +4,35 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 
-public class ProfileFragment extends Fragment {
+import java.util.ArrayList;
 
-    private ProfileModel profileModel;
+public class ProfileFragment extends Fragment {
+    RecyclerView recyclerView;
+    ArrayList<ProfileViewModel> arrayList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        profileModel =
-                new ViewModelProvider(this).get(ProfileModel.class);
-        View root = inflater.inflate(R.layout.fragment_profile, container, false);
-        final TextView textView = root.findViewById(R.id.text_profile);
-        profileModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+        View v = inflater.inflate(R.layout.fragment_profile, container, false);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerprofile);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        arrayList = new ArrayList<>();
+
+        ProfileViewModel requestsViewModel = new ProfileViewModel( "jj33jfjh");
+        arrayList.add(requestsViewModel);
+        ProfileViewModel requestsViewModel1 = new ProfileViewModel( "jjj8h");
+        arrayList.add(requestsViewModel1);
+        ProfileViewModel requestsViewModel2 = new ProfileViewModel( "j7jjh");
+        arrayList.add(requestsViewModel2);
+
+        recyclerView.setAdapter(new ProfileAdapter(arrayList));
+        return v;
     }
 }

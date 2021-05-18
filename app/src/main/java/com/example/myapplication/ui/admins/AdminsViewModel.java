@@ -4,16 +4,28 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class AdminsViewModel extends ViewModel {
+public class AdminsViewModel {
+    String Phoneno;
+    String  Email;
 
-    private MutableLiveData<String> mText;
-
-    public AdminsViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is Admins fragment");
+    public AdminsViewModel(String Phoneno, String Email) {
+        this.Phoneno = Phoneno;
+        this.Email = Email;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public String getPhoneno() {
+        return Phoneno;
+    }
+
+    public void setPhoneno(String Phoneno) {
+        this.Phoneno = Phoneno;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String  Email) {
+        this.Email = Email;
     }
 }

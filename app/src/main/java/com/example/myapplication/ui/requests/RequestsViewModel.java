@@ -4,16 +4,28 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class RequestsViewModel extends ViewModel {
+public class RequestsViewModel {
+    String rollno;
+    String  arrayList;
 
-    private MutableLiveData<String> mText;
-
-    public RequestsViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is Requests fragment");
+    public RequestsViewModel(String rollno, String arrayList) {
+        this.rollno = rollno;
+        this.arrayList = arrayList;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public String getRollno() {
+        return rollno;
+    }
+
+    public void setRollno(String rollno) {
+        this.rollno = rollno;
+    }
+
+    public String getArrayList() {
+        return arrayList;
+    }
+
+    public void setArrayList(String  arrayList) {
+        this.arrayList = arrayList;
     }
 }

@@ -4,33 +4,35 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.ui.requests.RequestsViewModel;
+
+import java.util.ArrayList;
 
 public class RequestsFragment extends Fragment {
-
-    private RequestsViewModel requestsViewModel;
+    RecyclerView recyclerView;
+    ArrayList<RequestsViewModel> arrayList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        requestsViewModel =
-                new ViewModelProvider(this).get(RequestsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_requests, container, false);
-        final TextView textView = root.findViewById(R.id.text_requests);
-        requestsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+        View v = inflater.inflate(R.layout.fragment_requests, container, false);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerrequest);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        arrayList = new ArrayList<>();
+
+        RequestsViewModel requestsViewModel = new RequestsViewModel("20JE0000", "jj33jfjh");
+        arrayList.add(requestsViewModel);
+        RequestsViewModel requestsViewModel1 = new RequestsViewModel("20JE0030", "jjj8h");
+        arrayList.add(requestsViewModel1);
+        RequestsViewModel requestsViewModel2 = new RequestsViewModel("20JE0003", "j7jjh");
+        arrayList.add(requestsViewModel2);
+
+        recyclerView.setAdapter(new ReqAdapter(arrayList));
+        return v;
     }
 }
