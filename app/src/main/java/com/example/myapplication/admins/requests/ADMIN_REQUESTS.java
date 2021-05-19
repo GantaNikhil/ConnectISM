@@ -27,11 +27,11 @@ public class ADMIN_REQUESTS extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         arrayList = new ArrayList<>();
 
-        ADMIN_REQUESTSViewModel requestsViewModel = new ADMIN_REQUESTSViewModel("Dean", "jj33jfjh");
+        ADMIN_REQUESTSViewModel requestsViewModel = new ADMIN_REQUESTSViewModel("Dean", "Open College");
         arrayList.add(requestsViewModel);
-        ADMIN_REQUESTSViewModel requestsViewModel1 = new ADMIN_REQUESTSViewModel("Director", "jjj8h");
+        ADMIN_REQUESTSViewModel requestsViewModel1 = new ADMIN_REQUESTSViewModel("Director", "Reopen College");
         arrayList.add(requestsViewModel1);
-        ADMIN_REQUESTSViewModel requestsViewModel2 = new ADMIN_REQUESTSViewModel("ADean", "j7jjh");
+        ADMIN_REQUESTSViewModel requestsViewModel2 = new ADMIN_REQUESTSViewModel("ADean", "Cancel exams");
         arrayList.add(requestsViewModel2);
 
         recyclerView.setAdapter(new ADMIN_REQUESTSAdapter(arrayList));

@@ -25,11 +25,11 @@ public class ProfileFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         arrayList = new ArrayList<>();
 
-        ProfileViewModel requestsViewModel = new ProfileViewModel( "jj33jfjh");
+        ProfileViewModel requestsViewModel = new ProfileViewModel( "Open College");
         arrayList.add(requestsViewModel);
-        ProfileViewModel requestsViewModel1 = new ProfileViewModel( "jjj8h");
+        ProfileViewModel requestsViewModel1 = new ProfileViewModel( "No viva");
         arrayList.add(requestsViewModel1);
-        ProfileViewModel requestsViewModel2 = new ProfileViewModel( "j7jjh");
+        ProfileViewModel requestsViewModel2 = new ProfileViewModel( "Offline Classes");
         arrayList.add(requestsViewModel2);
 
         recyclerView.setAdapter(new ProfileAdapter(arrayList));

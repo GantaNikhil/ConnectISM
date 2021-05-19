@@ -27,11 +27,11 @@ public class ADMIN_PROFILE extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         arrayList = new ArrayList<>();
 
-        ADMIN_PROFILEViewModel requestsViewModel = new ADMIN_PROFILEViewModel( "jj33jfjh");
+        ADMIN_PROFILEViewModel requestsViewModel = new ADMIN_PROFILEViewModel( "Open College");
         arrayList.add(requestsViewModel);
-        ADMIN_PROFILEViewModel requestsViewModel1 = new ADMIN_PROFILEViewModel( "jjj8h");
+        ADMIN_PROFILEViewModel requestsViewModel1 = new ADMIN_PROFILEViewModel( "Reopen College");
         arrayList.add(requestsViewModel1);
-        ADMIN_PROFILEViewModel requestsViewModel2 = new ADMIN_PROFILEViewModel( "j7jjh");
+        ADMIN_PROFILEViewModel requestsViewModel2 = new ADMIN_PROFILEViewModel( "Room not clean");
         arrayList.add(requestsViewModel2);
 
         recyclerView.setAdapter(new ADMIN_PROFILEAdapter(arrayList));

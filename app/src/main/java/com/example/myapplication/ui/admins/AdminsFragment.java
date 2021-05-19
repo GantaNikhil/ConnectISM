@@ -25,11 +25,11 @@ public class AdminsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         arrayList = new ArrayList<>();
 
-        AdminsViewModel requestsViewModel = new AdminsViewModel("0000000000", "jj33jfjh@gmail.com");
+        AdminsViewModel requestsViewModel = new AdminsViewModel("0000000000", "proffessor1@iitism.ac.in");
         arrayList.add(requestsViewModel);
-        AdminsViewModel requestsViewModel1 = new AdminsViewModel("1111111111", "jjj8h@gmail.com");
+        AdminsViewModel requestsViewModel1 = new AdminsViewModel("1111111111", "proffessor1@iitism.ac.in");
         arrayList.add(requestsViewModel1);
-        AdminsViewModel requestsViewModel2 = new AdminsViewModel("222222222", "j7jjh@gmail.com");
+        AdminsViewModel requestsViewModel2 = new AdminsViewModel("222222222", "proffessor2@iitism.ac.in");
         arrayList.add(requestsViewModel2);
 
         recyclerView.setAdapter(new AdminsAdapter(arrayList));
