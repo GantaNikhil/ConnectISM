@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".NewRequest">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/wallpaper3">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg"
+            android:fontFamily="@font/aclonica"
+            android:gravity="center"
+            android:text="New Grievance"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text1"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/abril_fatface"
+            android:gravity="center"
+            android:text="Enter Grievance Details"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text2"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/abril_fatface"
+            android:text="Subject:"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/subject"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/text3"
+            android:layout_marginTop="5dp"
+            android:background="@android:drawable/dialog_holo_light_frame"
+            android:hint="   Enter Subject"
+            android:textColorHint="@android:color/holo_blue_light" />
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subject"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/abril_fatface"
+            android:text="Category of Grievance:"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20sp" />
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@+id/text4"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/text5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinner1"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/abril_fatface"
+            android:text="Visibility:"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20sp" />
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@+id/text5"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/text6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner2"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/abril_fatface"
+            android:text="Content:"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/text6"
+            android:layout_marginTop="5dp"
+            android:background="@android:drawable/dialog_holo_light_frame"
+            android:gravity="left"
+            android:hint="   Enter details"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:textColorHint="@android:color/holo_blue_light" />
+
+        <TextView
+            android:id="@+id/text7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/abril_fatface"
+            android:text="Upload image(Optional):"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/choosebtn"
+            style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_below="@+id/text7"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="CHOOSE IMAGE"
+            android:textColor="@color/white"
+            app:backgroundTint="@android:color/holo_blue_dark" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_below="@+id/choosebtn"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/uploadbtn"
+            style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_below="@+id/image"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="Upload"
+            android:textColor="@color/white"
+            app:backgroundTint="@android:color/holo_blue_dark" />
+
+        <Button
+            android:id="@+id/submitbtn"
+            style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+            android:layout_width="125dp"
+            android:layout_height="59dp"
+            android:layout_below="@+id/uploadbtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="SUBMIT"
+            android:textColor="@color/white"
+            app:backgroundTint="@android:color/holo_blue_dark" />
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

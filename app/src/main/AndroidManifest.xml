@@ -10,7 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".BackgroundActivity" android:theme="@style/Theme.MyApplication_NoActionBar"></activity>
+        <activity android:name=".NewRequest"></activity>
+        <activity
+            android:name=".BackgroundActivity"
+            android:theme="@style/Theme.MyApplication_NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
