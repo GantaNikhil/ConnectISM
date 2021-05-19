@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/nav_requests_admins"
+    android:id="@+id/admins_nav">
+
+    <fragment
+        android:id="@+id/nav_requests_admins"
+        android:name="com.example.myapplication.admins.requests.ADMIN_REQUESTS"
+        android:label="Requests"
+        tools:layout="@layout/_admins_fragment_requests" />
+
+    <fragment
+        android:id="@+id/nav_profile_admins"
+        android:name="com.example.myapplication.admins.profile.ADMIN_PROFILE"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/_admins_fragment_profile" />
+</navigation>

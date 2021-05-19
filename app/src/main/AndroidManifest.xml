@@ -25,7 +25,7 @@
         <activity android:name=".SignInStuActivity" />
         <activity android:name=".SignUpStuActivity" />
         <activity android:name=".SignUpAdmActivity" />
-
+        <activity android:name=".BackgroundAdminsActivity" android:theme="@style/Theme.MyApplication_NoActionBar"></activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
