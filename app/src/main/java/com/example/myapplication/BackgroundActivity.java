@@ -14,6 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -27,6 +28,7 @@ import androidx.appcompat.widget.Toolbar;
 public class BackgroundActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    FirebaseAuth firebaseAuth;
     private  View Logout;
 
     @Override
@@ -36,6 +38,7 @@ public class BackgroundActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
+        firebaseAuth= FirebaseAuth.getInstance();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +96,21 @@ public class BackgroundActivity extends AppCompatActivity {
                 });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+    private void checkUserStatus(){
+        //get current user
+        FirebaseUser user= firebaseAuth.getCurrentUser();
+        if(user !=null){
+        }else{
+            startActivity(new Intent(BackgroundActivity.this,MainActivity.class));
+        }
+    }
+
+    @Override
+    public void onStart() {
+        //check on start of app
+        checkUserStatus();
+        super.onStart();
     }
 
 }
