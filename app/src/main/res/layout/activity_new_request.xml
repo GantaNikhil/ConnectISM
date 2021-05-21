@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/wallpaper3"
+    android:layout_height="match_parent"
     tools:context=".NewRequest">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/wallpaper3">
 
         <TextView
             android:id="@+id/text1"
@@ -46,7 +46,6 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Subject:"
-            android:paddingLeft="10dp"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="20sp" />
 
@@ -56,9 +55,8 @@
             android:layout_height="60dp"
             android:layout_below="@+id/text3"
             android:layout_marginTop="5dp"
-            android:paddingLeft="15dp"
             android:background="@android:drawable/dialog_holo_light_frame"
-            android:hint="Enter Subject"
+            android:hint="   Enter Subject"
             android:textColorHint="@android:color/holo_blue_light" />
 
         <TextView
@@ -67,7 +65,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/subject"
             android:layout_marginTop="20dp"
-            android:paddingLeft="10dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Category of Grievance:"
             android:textColor="@android:color/holo_blue_dark"
@@ -76,13 +73,11 @@
             android:id="@+id/spinner1"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:paddingStart="5dp"
             android:layout_below="@+id/text4"
             android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/text5"
-            android:paddingLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/spinner1"
@@ -94,7 +89,6 @@
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="match_parent"
-            android:paddingStart="5dp"
             android:layout_height="55dp"
             android:layout_below="@+id/text5"
             android:layout_marginTop="5dp" />
@@ -103,7 +97,6 @@
             android:id="@+id/text6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
             android:layout_below="@+id/spinner2"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/abril_fatface"
@@ -116,14 +109,10 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_below="@+id/text6"
-            android:paddingStart="15dp"
-            android:paddingEnd="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginStart="2dp"
             android:layout_marginTop="5dp"
             android:background="@android:drawable/dialog_holo_light_frame"
             android:gravity="left"
-            android:hint="Enter details"
+            android:hint="   Enter details"
             android:inputType="textMultiLine"
             android:scrollbars="vertical"
             android:textColorHint="@android:color/holo_blue_light" />
@@ -134,7 +123,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/content"
             android:layout_marginTop="20dp"
-            android:paddingLeft="10dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Upload image(Optional):"
             android:textColor="@android:color/holo_blue_dark"
@@ -182,6 +170,7 @@
             android:text="SUBMIT"
             android:textColor="@color/white"
             app:backgroundTint="@android:color/holo_blue_dark" />
+
     </RelativeLayout>
 
 </ScrollView>
