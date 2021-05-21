@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +24,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpStuActivity extends AppCompatActivity {
     private EditText nameStu, admnumStu, emailStu, password1Stu, password2Stu;
@@ -30,7 +36,8 @@ public class SignUpStuActivity extends AppCompatActivity {
     TextView mHaveAccountTv;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
-
+    FirebaseFirestore fstore;
+    String userID;
     DatabaseReference myRef;
     MemberStu memberStu;
     long maxid;
@@ -49,6 +56,7 @@ public class SignUpStuActivity extends AppCompatActivity {
         mHaveAccountTv= findViewById(R.id.have_accountTv);
         progressDialog = new ProgressDialog(this);
         memberStu=new MemberStu();
+        fstore = FirebaseFirestore.getInstance();
         myRef= FirebaseDatabase.getInstance().getReference().child("Member");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -141,7 +149,20 @@ public class SignUpStuActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(SignUpStuActivity.this, "Successfully Registered", Toast.LENGTH_LONG).show();
+                    userID = firebaseAuth.getCurrentUser().getUid();
+                    DocumentReference documentReference = fstore.collection("students").document(userID);
+                    Map<String,Object> user = new HashMap<>();
+                    user.put("Name",nameStu);
+                    user.put("admissionno",admnumStu);
+                    user.put("email",emailStu);
+                    user.put("userUid",userID);
+                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(SignUpStuActivity.this, "Successfully Registered", Toast.LENGTH_LONG).show();
+                        }
+                    });
+
                     Intent intent = new Intent(SignUpStuActivity.this, BackgroundActivity.class);
                     startActivity(intent);
                     finish();
