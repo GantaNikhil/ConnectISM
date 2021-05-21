@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wallpaper3"
     tools:context=".NewRequest">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/wallpaper3">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/text1"
@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/text2"
             android:layout_marginTop="20dp"
+            android:paddingLeft="15dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Subject:"
             android:textColor="@android:color/holo_blue_dark"
@@ -54,14 +55,17 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_below="@+id/text3"
+            android:textColor="@color/black"
             android:layout_marginTop="5dp"
+            android:paddingLeft="15dp"
             android:background="@android:drawable/dialog_holo_light_frame"
-            android:hint="   Enter Subject"
+            android:hint="Enter Subject"
             android:textColorHint="@android:color/holo_blue_light" />
 
         <TextView
             android:id="@+id/text4"
             android:layout_width="match_parent"
+            android:paddingLeft="15dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/subject"
             android:layout_marginTop="20dp"
@@ -84,6 +88,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Visibility:"
+            android:paddingLeft="15dp"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="20sp" />
         <Spinner
@@ -98,6 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/spinner2"
+            android:paddingLeft="15dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Content:"
@@ -108,11 +114,13 @@
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:textColor="@color/black"
             android:layout_below="@+id/text6"
             android:layout_marginTop="5dp"
+            android:paddingLeft="15dp"
             android:background="@android:drawable/dialog_holo_light_frame"
             android:gravity="left"
-            android:hint="   Enter details"
+            android:hint="Enter details"
             android:inputType="textMultiLine"
             android:scrollbars="vertical"
             android:textColorHint="@android:color/holo_blue_light" />
@@ -125,6 +133,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Upload image(Optional):"
+            android:paddingLeft="15dp"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="20sp" />
 
