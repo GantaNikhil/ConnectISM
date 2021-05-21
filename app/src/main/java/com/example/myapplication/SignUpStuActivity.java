@@ -18,6 +18,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignUpStuActivity extends AppCompatActivity {
     private EditText nameStu, admnumStu, emailStu, password1Stu, password2Stu;
@@ -25,6 +30,10 @@ public class SignUpStuActivity extends AppCompatActivity {
     TextView mHaveAccountTv;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
+
+    DatabaseReference myRef;
+    MemberStu memberStu;
+    long maxid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +48,21 @@ public class SignUpStuActivity extends AppCompatActivity {
         SignUpButton = findViewById(R.id.registerstu);
         mHaveAccountTv= findViewById(R.id.have_accountTv);
         progressDialog = new ProgressDialog(this);
+        memberStu=new MemberStu();
+        myRef= FirebaseDatabase.getInstance().getReference().child("Member");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    maxid=snapshot.getChildrenCount();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +93,10 @@ public class SignUpStuActivity extends AppCompatActivity {
         String email = emailStu.getText().toString();
         String password1 = password1Stu.getText().toString();
         String password2 = password2Stu.getText().toString();
+
+        memberStu.setName(name);
+        memberStu.setAdm(admno);
+        myRef.push().setValue(memberStu);
 
         String[] separated = email.split("@");
         if(TextUtils.isEmpty(name)){
