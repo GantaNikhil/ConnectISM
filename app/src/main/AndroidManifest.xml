@@ -10,22 +10,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".NewRequest"></activity>
+        <activity android:name=".MainActivity2"></activity>
+        <activity android:name=".NewRequest" />
         <activity
             android:name=".BackgroundActivity"
-            android:theme="@style/Theme.MyApplication_NoActionBar" >
+            android:theme="@style/Theme.MyApplication_NoActionBar">
+
+        </activity>
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
         <activity android:name=".SignInAdmActivity" />
         <activity android:name=".SignInStuActivity" />
         <activity android:name=".SignUpStuActivity" />
         <activity android:name=".SignUpAdmActivity" />
-        <activity android:name=".BackgroundAdminsActivity" android:theme="@style/Theme.MyApplication_NoActionBar"></activity>
+        <activity
+            android:name=".BackgroundAdminsActivity"
+            android:theme="@style/Theme.MyApplication_NoActionBar" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

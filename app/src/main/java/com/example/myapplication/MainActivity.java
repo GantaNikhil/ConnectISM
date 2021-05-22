@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Homestudent = findViewById(R.id.homestudent);
         Homeadmin = findViewById(R.id.homeadmin);
         Homestudent.setOnClickListener(new View.OnClickListener() {

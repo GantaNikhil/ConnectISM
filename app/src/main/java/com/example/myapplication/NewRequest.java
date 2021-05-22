@@ -19,11 +19,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -34,7 +36,8 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
     public EditText sub, cont;
     public Button Choose,Upload,Submit;
     public ImageView Image;
-
+    FirebaseFirestore fstore;
+    String userID;
     StorageReference mStorageRef;
     DatabaseReference myRef;
     private StorageTask uploadTask;
@@ -50,7 +53,7 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
         setContentView(R.layout.activity_new_request);
 
         mStorageRef= FirebaseStorage.getInstance().getReference("Images");
-
+        fstore=FirebaseFirestore.getInstance();
 
 
         sub= findViewById(R.id.subject);
@@ -59,8 +62,9 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
         Choose= findViewById(R.id.choosebtn);
         Upload= findViewById(R.id.uploadbtn);
         Image= findViewById(R.id.image);
-
+        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         details= new Details();
+
         myRef= FirebaseDatabase.getInstance().getReference().child("Details");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
