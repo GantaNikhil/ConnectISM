@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -24,12 +25,14 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class BackgroundActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     FirebaseAuth firebaseAuth;
     private  View Logout;
+    public SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,18 @@ public class BackgroundActivity extends AppCompatActivity {
                 startActivity(new Intent(BackgroundActivity.this,NewRequest.class));
             }
         });
+
+
+
+//        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.list_item);
+//        swipeContainer.setColorSchemeResources(android.R.color.holo_orange_dark);
+//        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                onCreate(savedInstanceState);
+//                Toast.makeText(BackgroundActivity.this, "Refreshed", Toast.LENGTH_SHORT).show();
+//            }
+//        });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -63,6 +78,34 @@ public class BackgroundActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu2, menu);
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logOut:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Are You Sure You Want to Log Out ?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Logout = (View) findViewById(R.id.logOut);
+                                FirebaseAuth.getInstance().signOut();
+                                Intent intent = new Intent(BackgroundActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
