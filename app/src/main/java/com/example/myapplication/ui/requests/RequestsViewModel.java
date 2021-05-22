@@ -1,9 +1,5 @@
 package com.example.myapplication.ui.requests;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
 public class RequestsViewModel {
     String category,content,subject,visibility;
 

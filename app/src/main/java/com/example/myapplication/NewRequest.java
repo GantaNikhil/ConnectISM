@@ -1,9 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,19 +14,14 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -71,10 +62,10 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         details= new Details();
 
-        DocumentReference documentReference = fstore.collection("request").document(userID);
+     /*   DocumentReference documentReference = fstore.collection("request").document();
         Map<String,Object> request = new HashMap<>();
-        request.put("subject",sub.getText().toString().trim());
-        request.put("content",cont.getText().toString().trim());
+        request.put("subject",sub.getText().toString());
+        request.put("content",cont.getText().toString());
         request.put("category",category);
         request.put("visibility",visibility);
         documentReference.set(request).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -82,7 +73,7 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
             public void onSuccess(Void unused) {
                 Toast.makeText(NewRequest.this, "Done", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
 
       /*  myRef= FirebaseDatabase.getInstance().getReference().child("Details");
@@ -126,7 +117,7 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
                 myRef.child(String.valueOf(maxid+1)).setValue(details);
                 Toast.makeText(NewRequest.this,"Grievance filed successfully",Toast.LENGTH_SHORT).show();*/
 
-                DocumentReference documentReference = fstore.collection("request").document(userID);
+                DocumentReference documentReference = fstore.collection("request").document();
                 Map<String,Object> request = new HashMap<>();
                 request.put("subject",sub.getText().toString().trim());
                 request.put("content",cont.getText().toString().trim());

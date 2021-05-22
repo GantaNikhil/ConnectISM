@@ -12,17 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
+import com.google.firebase.firestore.Query;
 
 public class RequestsFragment extends Fragment {
     RecyclerView recyclerView;
-    ArrayList<RequestsViewModel> arrayList;
+    /*ArrayList<RequestsViewModel> arrayList;*/
     private FirebaseFirestore fstore;
-    private String userID;
-    private FirebaseAuth auth;
+   /* private String userID;
+    private FirebaseAuth auth;*/
     myadapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -30,33 +28,18 @@ public class RequestsFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_requests, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerrequest);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        fstore = FirebaseFirestore.getInstance();
+        Query query = fstore.collection("request").whereEqualTo("visibility","Public");
 
-        FirestoreRecyclerOptions<RequestsViewModel> options =
-                new FirestoreRecyclerOptions.Builder<RequestsViewModel>()
-                .setQuery(FirebaseFirestore.getInstance().collection("request"),RequestsViewModel.class)
+
+        FirestoreRecyclerOptions<RequestsViewModel> options = new FirestoreRecyclerOptions.Builder<RequestsViewModel>()
+                .setQuery(query,RequestsViewModel.class)
                 .build();
 
-        adapter = new myadapter(options);
+
+        adapter =new myadapter(options);
         recyclerView.setAdapter(adapter);
-      /*  arrayList = new ArrayList<>();
 
-        auth = FirebaseAuth.getInstance();
-        userID = auth.getCurrentUser().getUid();
-        fstore = FirebaseFirestore.getInstance();
-        RequestsViewModel requestsViewModel = new RequestsViewModel("20JE0000", "Cancel Online Exams");
-        arrayList.add(requestsViewModel);
-        RequestsViewModel requestsViewModel1 = new RequestsViewModel("20JE0030", "Reopen College");
-        arrayList.add(requestsViewModel1);
-        RequestsViewModel requestsViewModel2 = new RequestsViewModel("20JE0093", "Reduce class timings");
-        arrayList.add(requestsViewModel2);
-        RequestsViewModel requestsViewModel3 = new RequestsViewModel("20JE0788", "Reduce college timings");
-        arrayList.add(requestsViewModel3);
-        RequestsViewModel requestsViewModel4 = new RequestsViewModel("20JE1056", "Hostel issues");
-        arrayList.add(requestsViewModel4);
-        RequestsViewModel requestsViewModel5 = new RequestsViewModel("20JE0485", "Mess problems");
-        arrayList.add(requestsViewModel5);
-
-        recyclerView.setAdapter(new ReqAdapter(arrayList));*/
         return v;
     }
 

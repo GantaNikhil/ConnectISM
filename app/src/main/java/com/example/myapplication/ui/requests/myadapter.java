@@ -9,13 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import org.jetbrains.annotations.NotNull;
 
-public class myadapter extends FirebaseRecyclerAdapter<RequestsViewModel,myadapter.myviewholder> {
+public class myadapter extends FirestoreRecyclerAdapter<RequestsViewModel,myadapter.myviewholder> {
+
 
     public myadapter(@NonNull @NotNull FirestoreRecyclerOptions<RequestsViewModel> options) {
         super(options);
@@ -25,6 +25,7 @@ public class myadapter extends FirebaseRecyclerAdapter<RequestsViewModel,myadapt
     protected void onBindViewHolder(@NonNull @NotNull myviewholder holder, int position, @NonNull @NotNull RequestsViewModel model) {
         holder.rollnostu.setText(model.getSubject());
         holder.requests.setText(model.getContent());
+
     }
 
     @NonNull
@@ -38,11 +39,14 @@ public class myadapter extends FirebaseRecyclerAdapter<RequestsViewModel,myadapt
     public class myviewholder extends RecyclerView.ViewHolder
     {
         TextView rollnostu,requests;
+        String visibility;
         public myviewholder(@NonNull @NotNull View itemView) {
             super(itemView);
 
             rollnostu = itemView.findViewById(R.id.rollnostu);
             requests = itemView.findViewById(R.id.requests);
+
         }
     }
+
 }
