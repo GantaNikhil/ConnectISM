@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.MemberStu;
 import com.example.myapplication.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +23,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -30,6 +34,7 @@ public class ProfileFragment extends Fragment {
     RecyclerView recyclerView;
     ArrayList<ProfileViewModel> arrayList;
     //firebase auth
+    FirebaseFirestore fstore;
     FirebaseAuth firebaseAuth;
     DatabaseReference reff;
     TextView mProfileTv;
@@ -57,6 +62,14 @@ public class ProfileFragment extends Fragment {
         admno=v.findViewById(R.id.profileadmno);
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         uid=user.getUid();
+        DocumentReference documentReference = fstore.collection("students").document(uid);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+            name.setText(documentSnapshot.getString("Name"));
+            admno.setText(documentSnapshot.getString("admissionno"));
+            }
+        });
         reff= FirebaseDatabase.getInstance().getReference().child("Member").child(uid.toString());
         reff.addValueEventListener(new ValueEventListener() {
             @Override
