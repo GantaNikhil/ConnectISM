@@ -56,6 +56,7 @@ public class ProfileFragment extends Fragment {
 
         recyclerView.setAdapter(new ProfileAdapter(arrayList));
 
+        fstore = FirebaseFirestore.getInstance();
         firebaseAuth= FirebaseAuth.getInstance();
         mProfileTv= v.findViewById(R.id.profileTv);
         name=v.findViewById(R.id.profilename);
@@ -74,7 +75,7 @@ public class ProfileFragment extends Fragment {
           }
             }
         });
-        reff= FirebaseDatabase.getInstance().getReference().child("Member").child(uid.toString());
+       /* reff= FirebaseDatabase.getInstance().getReference().child("Member").child(uid.toString());
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -89,13 +90,14 @@ public class ProfileFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
         return v;
     }
     private void checkUserStatus(){
         //get current user
         FirebaseUser user= firebaseAuth.getCurrentUser();
         if(user !=null){
+
             //user is signed in stay here
             //set email of logged in user
             mProfileTv.setText(user.getEmail());

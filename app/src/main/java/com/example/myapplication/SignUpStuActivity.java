@@ -57,7 +57,7 @@ public class SignUpStuActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         memberStu=new MemberStu();
         fstore = FirebaseFirestore.getInstance();
-        myRef= FirebaseDatabase.getInstance().getReference().child("Member");
+      /*  myRef= FirebaseDatabase.getInstance().getReference().child("Member");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -70,7 +70,7 @@ public class SignUpStuActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,9 +102,9 @@ public class SignUpStuActivity extends AppCompatActivity {
         String password1 = password1Stu.getText().toString();
         String password2 = password2Stu.getText().toString();
 
-        memberStu.setName(name);
+     /*   memberStu.setName(name);
         memberStu.setAdm(admno);
-        myRef.push().setValue(memberStu);
+        myRef.push().setValue(memberStu);*/
 
         String[] separated = email.split("@");
         if(TextUtils.isEmpty(name)){
@@ -152,9 +152,9 @@ public class SignUpStuActivity extends AppCompatActivity {
                     userID = firebaseAuth.getCurrentUser().getUid();
                     DocumentReference documentReference = fstore.collection("students").document(userID);
                     Map<String,Object> user = new HashMap<>();
-                    user.put("Name",nameStu);
-                    user.put("admissionno",admnumStu);
-                    user.put("email",emailStu);
+                    user.put("Name",name);
+                    user.put("admissionno",admno);
+                    user.put("email",email);
                     user.put("userUid",userID);
                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
