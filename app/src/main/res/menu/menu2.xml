@@ -6,4 +6,9 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/logOut"
+        android:icon="@drawable/logout_icon"
+        android:title="Log Out"
+        app:showAsAction="ifRoom" />
 </menu>
