@@ -24,7 +24,7 @@
         android:textStyle="bold" />
 
 
-    <!--Button: Student-->
+
     <Button
         android:id="@+id/homestudent"
         style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
@@ -37,8 +37,6 @@
         android:textColor="@color/white"
         app:backgroundTint="@android:color/holo_green_dark" />
 
-
-    <!--Button: Administration-->
     <Button
         android:id="@+id/homeadmin"
         style="@style/TextAppearance.AppCompat.Widget.Button.Colored"

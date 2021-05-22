@@ -60,8 +60,8 @@ public class ProfileFragment extends Fragment {
         mProfileTv= v.findViewById(R.id.profileTv);
         name=v.findViewById(R.id.profilename);
         admno=v.findViewById(R.id.profileadmno);
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-        uid=user.getUid();
+
+        uid=firebaseAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fstore.collection("students").document(uid);
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
