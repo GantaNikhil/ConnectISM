@@ -66,8 +66,12 @@ public class ProfileFragment extends Fragment {
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-            name.setText(documentSnapshot.getString("Name"));
-            admno.setText(documentSnapshot.getString("admissionno"));
+          if (documentSnapshot.exists()){  name.setText(documentSnapshot.getString("Name"));
+            admno.setText(documentSnapshot.getString("admissionno"));}
+          else {
+              name.setText("Name");
+              admno.setText("admissionno");
+          }
             }
         });
         reff= FirebaseDatabase.getInstance().getReference().child("Member").child(uid.toString());
