@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.ui.profile.ProfileAdapter;
-import com.example.myapplication.ui.profile.ProfileViewModel;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -21,6 +19,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+
+//import com.example.myapplication.ui.profile.ProfileViewModel;
 
 public class ADMIN_PROFILE extends Fragment {
     TextView name,desg,mprofile;

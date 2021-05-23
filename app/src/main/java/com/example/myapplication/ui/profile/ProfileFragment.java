@@ -16,7 +16,6 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,7 +28,7 @@ public class ProfileFragment extends Fragment {
     //firebase auth
     FirebaseFirestore fstore;
     FirebaseAuth firebaseAuth;
-    DatabaseReference reff;
+   // DatabaseReference reff;
     TextView mProfileTv;
     String uid;
     ProfilerequestAdapter adapter2;
@@ -47,30 +46,30 @@ public class ProfileFragment extends Fragment {
 
         uid=firebaseAuth.getCurrentUser().getUid();
         fstore = FirebaseFirestore.getInstance();
-
+        String userID;
 
         DocumentReference documentReference = fstore.collection("students").document(uid);
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-          if (documentSnapshot.exists()) {
+
               name.setText(documentSnapshot.getString("Name"));
               admno.setText(documentSnapshot.getString("admissionno"));
-              Query query = fstore.collection("request").whereEqualTo("admissionno",documentSnapshot.getString("admissionno").toString());
-              FirestoreRecyclerOptions<ProfileViewModel> options = new FirestoreRecyclerOptions.Builder<ProfileViewModel>()
-                      .setQuery(query, ProfileViewModel.class)
-                      .build();
 
-              adapter2 =new ProfilerequestAdapter(options);
-              recyclerView.setAdapter(adapter2);
-          }
-          else {
-              name.setText("Name");
-              admno.setText("admissionno");
-          }
+
+
             }
         });
+        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Query query = fstore.collection("request").whereEqualTo("uid",userID);
 
+
+        FirestoreRecyclerOptions<ProfileViewModel> options = new FirestoreRecyclerOptions.Builder<ProfileViewModel>()
+                .setQuery(query,ProfileViewModel.class)
+                .build();
+
+        adapter2 =new ProfilerequestAdapter(options);
+        recyclerView.setAdapter(adapter2);
 
 
 
@@ -91,6 +90,13 @@ public class ProfileFragment extends Fragment {
         //check on start of app
         checkUserStatus();
         super.onStart();
+        adapter2.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter2.stopListening();
     }
 }
 

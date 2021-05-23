@@ -133,6 +133,7 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
                 request.put("category",category);
                 request.put("visibility",visibility);
                 request.put("admissionno",admissionno);
+                request.put("uid",userID);
                 documentReference.set(request).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {

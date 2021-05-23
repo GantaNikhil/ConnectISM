@@ -20,10 +20,12 @@ public class ProfilerequestAdapter extends FirestoreRecyclerAdapter<ProfileViewM
         super(options);
     }
 
+
     @Override
     protected void onBindViewHolder(@NonNull @NotNull myviewrequestholder holder, int position, @NonNull @NotNull ProfileViewModel model) {
         holder.rollnostu.setText(model.getSubject());
         holder.requests.setText(model.getContent());
+
     }
 
     @NonNull
