@@ -18,9 +18,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpAdmActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private EditText  nameAdm, emailAdm, password1Adm, password2Adm;
@@ -28,6 +34,9 @@ public class SignUpAdmActivity extends AppCompatActivity implements AdapterView.
     TextView mHaveAccountAdm;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
+    FirebaseFirestore fstore;
+    String text;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,7 @@ public class SignUpAdmActivity extends AppCompatActivity implements AdapterView.
         SignUpButton = findViewById(R.id.registeradm);
         mHaveAccountAdm= findViewById(R.id.have_accountadm);
         progressDialog = new ProgressDialog(this);
+        fstore = FirebaseFirestore.getInstance();
 
         Spinner spinner= findViewById(R.id.spinner);
         ArrayAdapter<CharSequence>adapter= ArrayAdapter.createFromResource(this,R.array.admins, android.R.layout.simple_dropdown_item_1line);
@@ -110,10 +120,22 @@ public class SignUpAdmActivity extends AppCompatActivity implements AdapterView.
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(SignUpAdmActivity.this, "Successfully Registered", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(SignUpAdmActivity.this, BackgroundAdminsActivity.class);
-                    startActivity(intent);
-                    finish();
+                    userID = firebaseAuth.getCurrentUser().getUid();
+                    DocumentReference documentReference = fstore.collection("administrators").document(userID);
+                    Map<String,Object> user = new HashMap<>();
+                    user.put("Name",name);
+                    user.put("Designation",text);
+                    user.put("email",email);
+                    user.put("userUid",userID);
+                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(SignUpAdmActivity.this, "Successfully Registered", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(SignUpAdmActivity.this, BackgroundAdminsActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
                 } else {
                     Toast.makeText(SignUpAdmActivity.this, "Registration Failed!", Toast.LENGTH_LONG).show();
                 }
@@ -128,7 +150,7 @@ public class SignUpAdmActivity extends AppCompatActivity implements AdapterView.
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text=parent.getItemAtPosition(position).toString();
+        text=parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
     }
 
