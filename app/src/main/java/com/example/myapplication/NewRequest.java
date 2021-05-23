@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.ui.requests.RequestsFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -138,6 +139,9 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(NewRequest.this, "Grievance filed successfully", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(NewRequest.this, BackgroundActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 });
             }

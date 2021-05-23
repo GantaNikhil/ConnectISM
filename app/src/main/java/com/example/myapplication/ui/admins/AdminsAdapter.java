@@ -33,6 +33,7 @@ public class AdminsAdapter extends RecyclerView.Adapter<AdminsAdapter.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.Phoneno.setText(dataholder.get(position).getPhoneno());
         holder.Email.setText(dataholder.get(position).getEmail());
+        holder.Adminname.setText(dataholder.get(position).getName());
     }
 
     @Override
@@ -42,12 +43,13 @@ public class AdminsAdapter extends RecyclerView.Adapter<AdminsAdapter.MyViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView Phoneno,Email;
+        TextView Phoneno,Email,Adminname;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             Phoneno =(TextView)itemView.findViewById(R.id.phone);
             Email=(TextView)itemView.findViewById(R.id.emailid);
+            Adminname=(TextView)itemView.findViewById(R.id.adminname);
         }
     }
 }
