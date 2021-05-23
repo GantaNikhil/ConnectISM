@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
-
+/*
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.MyViewHolder> {
 
     ArrayList<ProfileViewModel> dataholder;
@@ -49,3 +49,4 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.MyViewHo
         }
     }
 }
+*/

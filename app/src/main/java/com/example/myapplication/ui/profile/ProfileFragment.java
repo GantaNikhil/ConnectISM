@@ -1,6 +1,5 @@
 package com.example.myapplication.ui.profile;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,49 +11,33 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.MainActivity;
-import com.example.myapplication.MemberStu;
 import com.example.myapplication.R;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
+import com.google.firebase.firestore.Query;
 
 public class ProfileFragment extends Fragment {
     TextView name,admno;
     RecyclerView recyclerView;
-    ArrayList<ProfileViewModel> arrayList;
+    //ArrayList<ProfileViewModel> arrayList;
     //firebase auth
     FirebaseFirestore fstore;
     FirebaseAuth firebaseAuth;
     DatabaseReference reff;
     TextView mProfileTv;
     String uid;
-
+    ProfilerequestAdapter adapter2;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerprofile);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        arrayList = new ArrayList<>();
-
-        ProfileViewModel requestsViewModel = new ProfileViewModel( "jj33jfjh");
-        arrayList.add(requestsViewModel);
-        ProfileViewModel requestsViewModel1 = new ProfileViewModel( "jjj8h");
-        arrayList.add(requestsViewModel1);
-        ProfileViewModel requestsViewModel2 = new ProfileViewModel( "j7jjh");
-        arrayList.add(requestsViewModel2);
-
-        recyclerView.setAdapter(new ProfileAdapter(arrayList));
 
         fstore = FirebaseFirestore.getInstance();
         firebaseAuth= FirebaseAuth.getInstance();
@@ -63,34 +46,34 @@ public class ProfileFragment extends Fragment {
         admno=v.findViewById(R.id.profileadmno);
 
         uid=firebaseAuth.getCurrentUser().getUid();
+        fstore = FirebaseFirestore.getInstance();
+
+
         DocumentReference documentReference = fstore.collection("students").document(uid);
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-          if (documentSnapshot.exists()){  name.setText(documentSnapshot.getString("Name"));
-            admno.setText(documentSnapshot.getString("admissionno"));}
+          if (documentSnapshot.exists()) {
+              name.setText(documentSnapshot.getString("Name"));
+              admno.setText(documentSnapshot.getString("admissionno"));
+              Query query = fstore.collection("request").whereEqualTo("admissionno",documentSnapshot.getString("admissionno").toString());
+              FirestoreRecyclerOptions<ProfileViewModel> options = new FirestoreRecyclerOptions.Builder<ProfileViewModel>()
+                      .setQuery(query, ProfileViewModel.class)
+                      .build();
+
+              adapter2 =new ProfilerequestAdapter(options);
+              recyclerView.setAdapter(adapter2);
+          }
           else {
               name.setText("Name");
               admno.setText("admissionno");
           }
             }
         });
-       /* reff= FirebaseDatabase.getInstance().getReference().child("Member").child(uid.toString());
-        reff.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String stuname=snapshot.child("name").getValue().toString();
-                //String stuno=snapshot.child("adm").getValue().toString();
-                name.setText(stuname);
-                //name.setText(uid);
-                //admno.setText(stuno);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });*/
+
+
         return v;
     }
     private void checkUserStatus(){

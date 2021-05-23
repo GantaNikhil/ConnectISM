@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.StorageTask;
 
@@ -33,7 +34,7 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
     public Button Choose,Upload,Submit;
     public ImageView Image;
     FirebaseFirestore fstore;
-    String userID;
+    String userID,admissionno;
     //StorageReference mStorageRef;
     //DatabaseReference myRef;
     private StorageTask uploadTask;
@@ -62,6 +63,14 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         details= new Details();
 
+
+        DocumentReference documentReference = fstore.collection("students").document(userID);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+           admissionno = documentSnapshot.getString("admissionno");
+            }
+        });
      /*   DocumentReference documentReference = fstore.collection("request").document();
         Map<String,Object> request = new HashMap<>();
         request.put("subject",sub.getText().toString());
@@ -123,6 +132,7 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
                 request.put("content",cont.getText().toString().trim());
                 request.put("category",category);
                 request.put("visibility",visibility);
+                request.put("admissionno",admissionno);
                 documentReference.set(request).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
