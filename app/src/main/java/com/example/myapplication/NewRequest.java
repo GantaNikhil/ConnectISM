@@ -1,9 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,28 +14,28 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-import com.google.firebase.storage.UploadTask;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class NewRequest extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     public EditText sub, cont;
+    String category,visibility;
     public Button Choose,Upload,Submit;
     public ImageView Image;
     FirebaseFirestore fstore;
     String userID;
-    StorageReference mStorageRef;
-    DatabaseReference myRef;
+    //StorageReference mStorageRef;
+    //DatabaseReference myRef;
     private StorageTask uploadTask;
 
     Details details;
@@ -52,10 +48,11 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_request);
 
-        mStorageRef= FirebaseStorage.getInstance().getReference("Images");
+      //  mStorageRef= FirebaseStorage.getInstance().getReference("Images");
         fstore=FirebaseFirestore.getInstance();
 
-
+       // category = "Non-Academic Problems";
+       // visibility = "Private";
         sub= findViewById(R.id.subject);
         cont= findViewById(R.id.content);
         Submit= findViewById(R.id.submitbtn);
@@ -65,7 +62,21 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         details= new Details();
 
-        myRef= FirebaseDatabase.getInstance().getReference().child("Details");
+     /*   DocumentReference documentReference = fstore.collection("request").document();
+        Map<String,Object> request = new HashMap<>();
+        request.put("subject",sub.getText().toString());
+        request.put("content",cont.getText().toString());
+        request.put("category",category);
+        request.put("visibility",visibility);
+        documentReference.set(request).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(NewRequest.this, "Done", Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
+
+      /*  myRef= FirebaseDatabase.getInstance().getReference().child("Details");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -78,7 +89,7 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
 
         Choose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,10 +112,23 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                details.setSubject(sub.getText().toString().trim());
+               /* details.setSubject(sub.getText().toString().trim());
                 details.setDetails(cont.getText().toString().trim());
                 myRef.child(String.valueOf(maxid+1)).setValue(details);
-                Toast.makeText(NewRequest.this,"Grievance filed successfully",Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewRequest.this,"Grievance filed successfully",Toast.LENGTH_SHORT).show();*/
+
+                DocumentReference documentReference = fstore.collection("request").document();
+                Map<String,Object> request = new HashMap<>();
+                request.put("subject",sub.getText().toString().trim());
+                request.put("content",cont.getText().toString().trim());
+                request.put("category",category);
+                request.put("visibility",visibility);
+                documentReference.set(request).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(NewRequest.this, "Grievance filed successfully", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -126,7 +150,7 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     private void FileUploader() {
-        StorageReference Ref= mStorageRef.child(System.currentTimeMillis()+"."+getExtension(imguri));
+        /*StorageReference Ref= mStorageRef.child(System.currentTimeMillis()+"."+getExtension(imguri));
 
         uploadTask= Ref.putFile(imguri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -136,7 +160,7 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
                         //Uri downloadUrl= taskSnapshot.getDownloadUrl();
                         Toast.makeText(NewRequest.this,"Image Uploaded Successfully",Toast.LENGTH_SHORT).show();
                     }
-                });
+                });*/
     }
 
     private void Filechooser() {
@@ -158,11 +182,11 @@ public class NewRequest extends AppCompatActivity implements AdapterView.OnItemS
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if(parent.getId()==R.id.spinner1){
-            String text1=parent.getItemAtPosition(position).toString();
-            Toast.makeText(parent.getContext(),text1,Toast.LENGTH_SHORT).show();
+             category=parent.getItemAtPosition(position).toString();
+            Toast.makeText(parent.getContext(),category,Toast.LENGTH_SHORT).show();
         }else if(parent.getId()==R.id.spinner2){
-            String text2=parent.getItemAtPosition(position).toString();
-            Toast.makeText(parent.getContext(),text2,Toast.LENGTH_SHORT).show();
+            visibility=parent.getItemAtPosition(position).toString();
+            Toast.makeText(parent.getContext(),visibility,Toast.LENGTH_SHORT).show();
         }
     }
 

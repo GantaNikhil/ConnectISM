@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.ui.requests.ReqAdapter;
-import com.example.myapplication.ui.requests.RequestsViewModel;
 
 import java.util.ArrayList;
+
+//import com.example.myapplication.ui.requests.ReqAdapter;
 
 public class ADMIN_REQUESTS extends Fragment {
     RecyclerView recyclerView;

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
-
+/*
 public class ReqAdapter extends RecyclerView.Adapter<ReqAdapter.MyViewHolder> {
 
     ArrayList<RequestsViewModel> dataholder;
@@ -51,3 +51,4 @@ public class ReqAdapter extends RecyclerView.Adapter<ReqAdapter.MyViewHolder> {
         }
     }
 }
+*/
