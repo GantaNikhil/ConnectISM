@@ -1,3 +1,4 @@
-### Commutify
-     This is an Android Application
-###
+# Commutify #
+This is an Android App.
+
+
