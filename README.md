@@ -21,5 +21,5 @@ Made with [contributors-img](https://contrib.rocks).
 
 * *THANKS to all contributors*
 * Every contribution matters
-* All are welcomed to make changes to make our app better and best :) :) :) :) :)
+* All are welcomed to make changes to make our app better and best :) :) :) :)
 
